@@ -11,15 +11,40 @@ import com.houndshobbies.registration.persistence.GenDao;
 import java.util.List;
 import com.houndshobbies.registration.entity.User;
 
+
 @RestController
 public class UserController {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
+	private GenDao dao;
+
+	public UserController() {
+		dao = new GenDao(User.class);
+	}
+
 	@RequestMapping("/users")
-	public User greeting(@RequestParam(value="firstName", defaultValue="null") String name) {
+	public List<User> greeting(@RequestParam(value="firstName", defaultValue="null") String name) {
 		logger.info("Test!");
-		GenDao dao = new GenDao(User.class);
 		List<User> users = dao.getAll();
-		return users.get(0);
+		return users;
+	}
+
+	@RequestMapping("/insert")
+	public int insert() {
+		User user = new User("Eric", "Jones", "ejones@wisc.edu", 1, "t");
+		return dao.insert(user);
+	}
+
+	@RequestMapping("/update")
+	public String update() {
+		User user = dao.getById(9);
+		user.setFirstName("New");
+		dao.saveOrUpdate(user);
+		return "Hopefully Updated!";
+	}
+
+	public String delete() {
+		User user = dao.getById(9);
+		dao.delete(user);
 	}
 }

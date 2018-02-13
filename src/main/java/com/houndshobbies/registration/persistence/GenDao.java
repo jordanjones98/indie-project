@@ -11,6 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Expression;
+import org.hibernate.Transaction;
 
 public class GenDao<T> {
 
@@ -21,6 +22,30 @@ public class GenDao<T> {
 
 	public GenDao(Class<T> type) {
 		this.type = type;
+	}
+
+	/**
+	 * This function gets by the Id
+	 * @param id the Id of the row on the entity
+	 * @return entity the entity of the object
+	 */
+	public <T> T getById(int id) {
+		Session session = sessionFactory.openSession();
+		T entity = (T)session.get(type, id);
+		session.close();
+		return entity;
+	}
+
+	/**
+	 * This function deletes by an entity
+	 * @param entity the entity to delete
+	 */
+	public void delete(T entity) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		session.delete(entity);
+		transaction.commit();
+		session.close();
 	}
 
     /**
@@ -56,5 +81,31 @@ public class GenDao<T> {
 
         return list;
     }
+
+	/**
+	 * This function inserts an entity into the database
+	 * @param entity the entity to insert
+	 * @return int id the id of the inserted entity
+	 */
+	public int insert(T entity) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		int id = (int)session.save(entity);
+		transaction.commit();
+		session.close();
+		return id;
+	}
+
+	/**
+	 * This function saves or update the given entity
+	 * @param entity the entity to save or update
+	 */
+	public void saveOrUpdate(T entity) {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		session.saveOrUpdate(entity);
+		transaction.commit();
+		session.close();
+	}
 
 }

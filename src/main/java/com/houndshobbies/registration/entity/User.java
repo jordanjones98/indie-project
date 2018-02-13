@@ -23,11 +23,26 @@ public class User {
 	@Column(name = "phone_number")
 	private int phoneNumber;
 
-	public void customer() {
+	@Column(name = "password")
+	private String password;
+
+	public User() {
+	}
+
+	public User(String firstName, String lastName, String email, int phoneNumber, String password) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.password = password;
 	}
 
 	public String getFirstName() {
 		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {
@@ -40,5 +55,9 @@ public class User {
 
 	public int getPhoneNumber() {
 		return phoneNumber;
+	}
+
+	public String getPassword() {
+		return password;
 	}
 }
