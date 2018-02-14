@@ -29,7 +29,7 @@ public class GenDaoTest {
 
 	@Test
 	void getByIdSuccess() {
-		User user = dao.getById(1);
+		User user = (User)dao.getById(1);
 		assertNotNull(user);
 		assertEquals("Jordan", user.getFirstName());
 	}
@@ -47,20 +47,22 @@ public class GenDaoTest {
 		int id = dao.insert(newUser);
 		assertNotNull(id);
 		assertNotEquals(0, id);
-		assertEquals("Jeff", dao.getById(id).getFirstName());
+		User user = (User)dao.getById(id);
+		assertEquals("Jeff", user.getFirstName());
 	}
 
 	@Test
 	void deleteSuccess() {
-		dao.delete(dao.getById(1));
-		assertNull(dao.getById(1));
+		dao.delete((User)dao.getById(1));
+		assertNull((User)dao.getById(1));
 	}
 
 	@Test
 	void updateSuccess() {
-		User user = dao.getById(2);
+		User user = (User)dao.getById(2);
 		user.setFirstName("Jill");
 		dao.saveOrUpdate(user);
-		assertEquals("Jill", dao.getById(2).getFirstName());
+		User updatedUser = (User)dao.getById(2);
+		assertEquals("Jill", updatedUser.getFirstName());
 	}
 }
