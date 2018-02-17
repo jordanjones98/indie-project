@@ -20,6 +20,10 @@ public class GenDao<T> {
     SessionFactory sessionFactory = SessionFactoryProvider
             .getSessionFactory();
 
+	/**
+	 * Constructor that takes a class, and sets it to type
+	 * @param type the type of class
+	 */
 	public GenDao(Class<T> type) {
 		this.type = type;
 	}
@@ -49,7 +53,7 @@ public class GenDao<T> {
 	}
 
     /**
-     * This function gets all of the users by calling the execute
+     * This function gets all of the lines in the entity by calling the execute
      * query function.
      * @return a list of users
      */
@@ -65,8 +69,7 @@ public class GenDao<T> {
     }
 
     /**
-     * This function gets all of the users by calling the execute
-     * query function.
+	 * This function gets by a column, and searches by a term.
      * @return a list of users
      */
     public List<T> getByColumn(String column, String term) {
