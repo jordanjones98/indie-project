@@ -2,6 +2,8 @@ package com.houndshobbies.registration.entity;
 
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "Event")
 @Table(name = "events")
@@ -19,6 +21,18 @@ public class Event {
 
 	@Column(name = "date")
 	private String date;
+
+	@ManyToMany(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@JoinTable(
+		name="event_class",
+		joinColumns = { @JoinColumn(name="event_id") },
+		inverseJoinColumns = { @JoinColumn(name="class_id") }
+	)
+	private Set<Class> classes = new HashSet<>();
+
+	public Event() {
+
+	}
 
 	/**
 	 * This constructor creates a new Event
@@ -96,5 +110,17 @@ public class Event {
 	 */
 	public String getDate() {
 		return date;
+	}
+
+	public Set<Class> getClasses() {
+		return classes;
+	}
+
+	public void addClass(Class eventClass) {
+		classes.add(eventClass);
+	}
+
+	public void removeClass(Class eventClass) {
+		classes.remove(eventClass);
 	}
 }

@@ -2,6 +2,8 @@ package com.houndshobbies.registration.entity;
 
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "Class")
 @Table(name = "classes")
@@ -13,6 +15,13 @@ public class Class {
 
 	@Column(name = "class_name")
 	private String className;
+
+	@ManyToMany(mappedBy = "classes")
+	private Set<Event> events = new HashSet<>();
+
+	public Class() {
+
+	}
 
 	public Class(int id, String className) {
 		this.id = id;

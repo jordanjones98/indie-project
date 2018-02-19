@@ -29,4 +29,9 @@ public class EventController {
 		List<Event> events = dao.getAll();
 		return events;
 	}
+
+	@RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
+	public Event getEvent(@PathVariable("id") int id) {
+		return (Event)dao.getById(id);
+	}
 }
