@@ -41,8 +41,7 @@ public class Event {
 	 * @param about
 	 * @param date
 	 */
-	public Event(int id, String name, String about, String date) {
-		this.id = id;
+	public Event(String name, String about, String date) {
 		this.name = name;
 		this.about = about;
 		this.date = date;
