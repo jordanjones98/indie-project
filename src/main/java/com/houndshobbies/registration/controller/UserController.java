@@ -37,7 +37,7 @@ public class UserController {
 	 * This function handles the insert of a user
 	 * @param user the User object that is sent in with the request body
 	 */
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/insert", method = RequestMethod.POST)
 	public int insert(@RequestBody User user) {
 		return dao.insert(user);
 	}
@@ -46,7 +46,7 @@ public class UserController {
 	 * This function handles the update of a user
 	 * @param user the User object that is sent in with the request body
 	 */
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/update", method = RequestMethod.POST)
 	public String update(@RequestBody User user) {
 		dao.saveOrUpdate(user);
 		return "Hopefully Updated!";
@@ -56,7 +56,7 @@ public class UserController {
 	 * This function handles a delete of the user
 	 * @param user the User object that is sent in with the request body
 	 */
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/users/delete", method = RequestMethod.POST)
 	public User delete(@RequestBody User user) {
 		dao.delete(user);
 		return user;
