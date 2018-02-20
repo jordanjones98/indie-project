@@ -112,15 +112,25 @@ public class Event {
 		return date;
 	}
 
+	/**
+	 * This function returns the classes
+	 * @return classes
+	 */
 	public Set<Class> getClasses() {
 		return classes;
 	}
 
+	/**
+	 * This function adds a class to an event
+	 */
 	public void addClass(Class eventClass) {
 		classes.add(eventClass);
 	}
 
-	public void removeClass(Class eventClass) {
-		classes.remove(eventClass);
+	/**
+	 * This function removes a class from an event
+	 */
+	public boolean removeClass(Class eventClass) {
+		return classes.remove(eventClass);
 	}
 }

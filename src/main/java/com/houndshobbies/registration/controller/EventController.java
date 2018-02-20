@@ -11,6 +11,7 @@ import org.apache.log4j.LogManager;
 import com.houndshobbies.registration.persistence.GenDao;
 import java.util.List;
 import com.houndshobbies.registration.entity.Event;
+import com.houndshobbies.registration.entity.Class;
 
 
 @RestController
@@ -18,9 +19,11 @@ public class EventController {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
 	private GenDao dao;
+	private GenDao classDao;
 
 	public EventController() {
 		dao = new GenDao(Event.class);
+		classDao = new GenDao(Class.class);
 	}
 
 	@RequestMapping("/events")
@@ -30,8 +33,45 @@ public class EventController {
 		return events;
 	}
 
+	/**
+	 * This method gets an event by id.
+	 * @return event
+	 */
 	@RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
 	public Event getEvent(@PathVariable("id") int id) {
 		return (Event)dao.getById(id);
+	}
+
+	/**
+	 * This function attaches a class to an event.
+	 * @param eventId the id of the event
+	 * @param classId the id of the class to attach to the event
+	 */
+	@RequestMapping(value = "/events/{event}/add-class/{class}", method = RequestMethod.GET)
+	public Event addEventClass(@PathVariable("event") int eventId,
+			@PathVariable("class") int classId) {
+		Event event = (Event)dao.getById(eventId);
+		Class eventClass = (Class)classDao.getById(classId);
+		event.addClass(eventClass);
+		dao.saveOrUpdate(event);
+		Event newEvent = (Event)dao.getById(eventId);
+		return newEvent;
+	}
+
+	/**
+	 * This function detaches a class from an event.
+	 * @param eventId the id of the event
+	 * @param classId the id of the class
+	 */
+	@RequestMapping(value = "/events/{event}/remove-class/{class}", method = RequestMethod.GET)
+	public Event removeEventClass(@PathVariable("event") int eventId,
+			@PathVariable("class") int classId) {
+		Event event = (Event)dao.getById(eventId);
+		Class eventClass = (Class)classDao.getById(classId);
+		event.removeClass(eventClass);
+		return event;
+		//dao.saveOrUpdate(event);
+		//Event newEvent = (Event)dao.getById(eventId);
+		//return newEvent;
 	}
 }
