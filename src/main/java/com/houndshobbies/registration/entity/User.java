@@ -2,6 +2,8 @@ package com.houndshobbies.registration.entity;
 
 import javax.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity(name = "User")
 @Table(name = "users")
@@ -26,6 +28,14 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
+	@ManyToMany(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
+	@JoinTable(
+		name="user_event",
+		joinColumns = { @JoinColumn(name="user_id") },
+		inverseJoinColumns = { @JoinColumn(name="event_id") }
+	)
+	private Set<Event> events = new HashSet<>();
+
 	public User() {
 	}
 
@@ -43,6 +53,14 @@ public class User {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.password = password;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId() {
+		this.id = id;
 	}
 
 	/**
@@ -91,5 +109,17 @@ public class User {
 	 */
 	public String getPassword() {
 		return password;
+	}
+
+	/**
+	 * This functon returns the events that the user is in.
+	 * @return events
+	 */
+	public Set<Event> getEvents() {
+		return events;
+	}
+
+	public void addEvent(Event event) {
+		events.add(event);
 	}
 }

@@ -30,6 +30,9 @@ public class Event {
 	)
 	private Set<Class> classes = new HashSet<>();
 
+	@ManyToMany(mappedBy = "events")
+	private Set<User> users = new HashSet<>();
+
 	public Event() {
 
 	}
