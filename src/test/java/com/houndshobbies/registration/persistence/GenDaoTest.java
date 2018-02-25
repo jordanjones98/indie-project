@@ -23,7 +23,6 @@ public class GenDaoTest {
 		dao = new GenDao(User.class);
 		Database database = Database.getInstance();
 		database.runSQL("cleandb.sql");
-		System.out.println("Running Dao Tests");
 	}
 
 	/**

@@ -12,7 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.runner.RunWith;
 import java.util.List;
 
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class EventTest {
@@ -24,7 +23,6 @@ public class EventTest {
 	void setUp() {
 		dao = new GenDao(Event.class);
 		classDao = new GenDao(Class.class);
-		System.out.println("Setting up!");
 	}
 
 	@Test
