@@ -70,6 +70,11 @@ public class UserController {
 		return user;
 	}
 
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public User getById(@PathVariable("id") int userId) {
+		return (User)dao.getById(userId);
+	}
+
 	/**
 	 * This function adds an event to a user.
 	 * @param userId the userId sent in the URL
@@ -90,7 +95,7 @@ public class UserController {
 	 * @param eventId the id of the event to detach from the user
 	 */
 	@RequestMapping(value = "/{userId}/remove-event/{event}", method = RequestMethod.GET)
-	public Set<Event> removeEvent(@PathVariable("userId") int userId, @PathVariable("event") int eventId) {
+	public User removeEvent(@PathVariable("userId") int userId, @PathVariable("event") int eventId) {
 		User user = (User)dao.getById(userId);
 		Event event = (Event)eventDao.getById(eventId);
 		user.removeEvent(event);
