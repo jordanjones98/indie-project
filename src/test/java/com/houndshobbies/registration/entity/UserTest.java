@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.runner.RunWith;
 import java.util.List;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserTest {
 
@@ -19,6 +20,12 @@ public class UserTest {
 	@BeforeEach
 	void setUp() {
 		dao = new GenDao(Event.class);
+	}
+
+	@Test
+	void getUserTestSuccess() {
+		List<User> users = dao.getAll();
+		assertNotNull(users);
 	}
 
 }

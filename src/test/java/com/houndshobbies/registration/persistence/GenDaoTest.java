@@ -10,15 +10,20 @@ import com.houndshobbies.registration.entity.User;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.junit.runner.RunWith;
 import java.util.List;
+import com.houndshobbies.registration.util.Database;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-public class GenDaoTestClass {
+@SpringBootTest
+public class GenDaoTest {
 
 	GenDao dao;
 
 	@BeforeEach
 	void setUp() {
 		dao = new GenDao(User.class);
+		Database database = Database.getInstance();
+		database.runSQL("cleandb.sql");
+		System.out.println("Running Dao Tests");
 	}
 
 	/**
