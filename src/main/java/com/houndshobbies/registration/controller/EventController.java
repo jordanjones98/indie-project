@@ -29,7 +29,7 @@ public class EventController {
 		classDao = new GenDao(Class.class);
 	}
 
-	@RequestMapping("/events")
+	@RequestMapping(method = RequestMethod.GET)
 	public List<Event> events() {
 		logger.info("Test!");
 		List<Event> events = dao.getAll();
@@ -40,7 +40,7 @@ public class EventController {
 	 * This method gets an event by id.
 	 * @return event
 	 */
-	@RequestMapping(value = "/events/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public Event getEvent(@PathVariable("id") int id) {
 		return (Event)dao.getById(id);
 	}
@@ -50,7 +50,7 @@ public class EventController {
 	 * @param eventId the id of the event
 	 * @param classId the id of the class to attach to the event
 	 */
-	@RequestMapping(value = "/events/{event}/add-class/{class}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{event}/add-class/{class}", method = RequestMethod.GET)
 	public Event addEventClass(@PathVariable("event") int eventId,
 			@PathVariable("class") int classId) {
 		Event event = (Event)dao.getById(eventId);
@@ -66,7 +66,7 @@ public class EventController {
 	 * @param eventId the id of the event
 	 * @param classId the id of the class
 	 */
-	@RequestMapping(value = "/events/{event}/remove-class/{class}", method = RequestMethod.GET)
+	@RequestMapping(value = "/{event}/remove-class/{class}", method = RequestMethod.GET)
 	public Event removeEventClass(@PathVariable("event") int eventId,
 			@PathVariable("class") int classId) {
 		Event event = (Event)dao.getById(eventId);
