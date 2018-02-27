@@ -15,12 +15,13 @@ import java.util.List;
 import com.houndshobbies.registration.entity.User;
 import com.houndshobbies.registration.entity.Event;
 import java.util.Set;
+import com.houndshobbies.registration.interfaces.Controller;
 
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/users")
-public class UserController {
+public class UserController implements Controller<User> {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
 	private GenDao dao;
@@ -46,8 +47,8 @@ public class UserController {
 	 * @param user the User object that is sent in with the request body
 	 */
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public int insert(@RequestBody User user) {
-		return dao.insert(user);
+	public int insert(@RequestBody User entity) {
+		return dao.insert(entity);
 	}
 
 	/**
@@ -55,9 +56,8 @@ public class UserController {
 	 * @param user the User object that is sent in with the request body
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(@RequestBody User user) {
-		dao.saveOrUpdate(user);
-		return "Hopefully Updated!";
+	public void update(@RequestBody User entity) {
+		dao.saveOrUpdate(entity);
 	}
 
 	/**
@@ -65,14 +65,13 @@ public class UserController {
 	 * @param user the User object that is sent in with the request body
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public User delete(@RequestBody User user) {
-		dao.delete(user);
-		return user;
+	public void delete(@RequestBody User entity) {
+		dao.delete(entity);
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public User getById(@PathVariable("id") int userId) {
-		return (User)dao.getById(userId);
+	@RequestMapping(value = "/{slug}", method = RequestMethod.GET)
+	public User getBySlug(@PathVariable("slug") String slug) {
+		return (User)dao.getBySlug(slug);
 	}
 
 	/**
