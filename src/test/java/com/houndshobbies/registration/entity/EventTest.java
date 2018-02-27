@@ -33,6 +33,5 @@ public class EventTest {
 		dao.saveOrUpdate(event);
 		Event newEvent = (Event)dao.getById(2);
 		assertEquals(1, newEvent.getClasses().size());
-		System.out.println("Test");
 	}
 }
