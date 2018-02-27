@@ -7,18 +7,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.apache.log4j.Logger;
 import org.apache.log4j.LogManager;
 import com.houndshobbies.registration.persistence.GenDao;
 import java.util.List;
 import com.houndshobbies.registration.entity.Event;
 import com.houndshobbies.registration.entity.Class;
+import com.houndshobbies.registration.interfaces.Controller;
 
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/events")
-public class EventController {
+public class EventController implements Controller<Event> {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
 	private GenDao dao;
@@ -30,19 +32,47 @@ public class EventController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public List<Event> events() {
+	public List<Event> getAll() {
 		logger.info("Test!");
 		List<Event> events = dao.getAll();
 		return events;
 	}
 
 	/**
-	 * This method gets an event by id.
+	 * This method gets an event by slug.
 	 * @return event
 	 */
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Event getEvent(@PathVariable("id") int id) {
-		return (Event)dao.getById(id);
+	@RequestMapping(value = "/{slug}", method = RequestMethod.GET)
+	public Event getBySlug(@PathVariable("slug") String slug) {
+		return (Event)dao.getBySlug(slug);
+	}
+
+
+	/**
+	 * This funciton inserts a new event into the database.
+	 * @param entity the event sent by the client to insert
+	 */
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	public int insert(@RequestBody Event entity) {
+		return dao.insert(entity);
+	}
+
+	/**
+	 * This function updates an event.
+	 * @param entity the event sent by the client to update
+	 */
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public void update(@RequestBody Event entity) {
+		dao.saveOrUpdate(entity);
+	}
+
+	/**
+	 * This function deletes an event from the database;
+	 * @param entity the event sent by the client
+	 */
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public void delete(@RequestBody Event entity) {
+		dao.delete(entity);
 	}
 
 	/**
