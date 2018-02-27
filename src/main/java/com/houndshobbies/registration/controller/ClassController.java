@@ -15,6 +15,7 @@ import com.houndshobbies.registration.entity.Class;
 import com.houndshobbies.registration.interfaces.Controller;
 
 @RestController
+@RequestMapping("/classes")
 public class ClassController implements Controller<Class> {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
@@ -28,13 +29,13 @@ public class ClassController implements Controller<Class> {
 	 * This function returns all of the classes.
 	 * @return classes
 	 */
-	@RequestMapping("/classes")
+	@RequestMapping(method = RequestMethod.GET)
 	public List<Class> getAll() {
 		List<Class> classes = dao.getAll();
 		return classes;
 	}
 
-	@RequestMapping(value = "/classes/:slug", method = RequestMethod.GET)
+	@RequestMapping(value = "/:slug", method = RequestMethod.GET)
 	public Class getBySlug(@PathVariable("slug") String slug) {
 		return (Class)dao.getBySlug(slug);
 	}
@@ -43,7 +44,7 @@ public class ClassController implements Controller<Class> {
 	 * This funciton inserts a new class into the database.
 	 * @param eventClass the class sent by the client to insert
 	 */
-	@RequestMapping(value = "/classes/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public int insert(@RequestBody Class entity) {
 		return dao.insert(entity);
 	}
@@ -52,7 +53,7 @@ public class ClassController implements Controller<Class> {
 	 * This function updates an class.
 	 * @param eventClass the class sent by the client to update
 	 */
-	@RequestMapping(value = "/classes/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public void update(@RequestBody Class entity) {
 		dao.saveOrUpdate(entity);
 	}
@@ -61,8 +62,8 @@ public class ClassController implements Controller<Class> {
 	 * This function deletes an event from the table.
 	 * @param eventClass the Class object sent in by the client
 	 */
-	@RequestMapping(value = "/classes/delete", method = RequestMethod.POST)
-	public void delete(Class entity) {
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public void delete(@RequestBody Class entity) {
 		dao.delete(entity);
 	}
 }
