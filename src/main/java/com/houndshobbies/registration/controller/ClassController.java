@@ -44,8 +44,8 @@ public class ClassController implements Controller<Class> {
 	 * @param eventClass the class sent by the client to insert
 	 */
 	@RequestMapping(value = "/classes/insert", method = RequestMethod.POST)
-	public int insert(@RequestBody Class eventClass) {
-		return dao.insert(eventClass);
+	public int insert(@RequestBody Class entity) {
+		return dao.insert(entity);
 	}
 
 	/**
@@ -53,8 +53,8 @@ public class ClassController implements Controller<Class> {
 	 * @param eventClass the class sent by the client to update
 	 */
 	@RequestMapping(value = "/classes/update", method = RequestMethod.POST)
-	public void update(@RequestBody Class eventClass) {
-		dao.saveOrUpdate(eventClass);
+	public void update(@RequestBody Class entity) {
+		dao.saveOrUpdate(entity);
 	}
 
 	/**
@@ -62,7 +62,7 @@ public class ClassController implements Controller<Class> {
 	 * @param eventClass the Class object sent in by the client
 	 */
 	@RequestMapping(value = "/classes/delete", method = RequestMethod.POST)
-	public void delete(@RequestBody Class eventClass) {
-		dao.delete(eventClass);
+	public void delete(Class entity) {
+		dao.delete(entity);
 	}
 }
