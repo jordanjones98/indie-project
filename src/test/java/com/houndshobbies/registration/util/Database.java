@@ -75,7 +75,7 @@ public class Database {
             try {
                 connection.close();
             } catch (SQLException e) {
-                System.out.println("Cannot close connection" + e);
+				logger.error("Can't close connection", e);
             }
         }
 
