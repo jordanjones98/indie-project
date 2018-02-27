@@ -15,7 +15,7 @@ import com.houndshobbies.registration.entity.Class;
 import com.houndshobbies.registration.interfaces.Controller;
 
 @RestController
-public class ClassController implements Controller {
+public class ClassController implements Controller<Class> {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
 	private GenDao dao;
