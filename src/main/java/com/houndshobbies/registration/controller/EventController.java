@@ -26,11 +26,19 @@ public class EventController implements Controller<Event> {
 	private GenDao dao;
 	private GenDao classDao;
 
+	/**
+	 * Constructor for EventController creates two GenDao's one for Event
+	 * and one for Class
+	 */
 	public EventController() {
 		dao = new GenDao(Event.class);
 		classDao = new GenDao(Class.class);
 	}
 
+	/**
+	 * This function gets all of the events
+	 * @return events
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Event> getAll() {
 		logger.info("Test!");

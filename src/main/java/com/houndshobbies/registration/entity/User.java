@@ -119,10 +119,18 @@ public class User {
 		return events;
 	}
 
+	/**
+	 * This class adds an event to the current User.
+	 * @param event the event to add to the user
+	 */
 	public void addEvent(Event event) {
 		events.add(event);
 	}
 
+	/**
+	 * This class removes an event from the current User.
+	 * @param event the event to remove from the user
+	 */
 	public void removeEvent(Event event) {
 		events.remove(event);
 	}

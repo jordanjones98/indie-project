@@ -21,6 +21,9 @@ public class ClassController implements Controller<Class> {
 
 	private GenDao dao;
 
+	/**
+	 * Constructor for ClassController, creates one GenDao for Class.
+	 */
 	public ClassController() {
 		dao = new GenDao(Class.class);
 	}
@@ -35,6 +38,11 @@ public class ClassController implements Controller<Class> {
 		return classes;
 	}
 
+	/**
+	 * This function gets the class by it's slug.
+	 * @param slug the slug of the class
+	 * @return the class entity
+	 */
 	@RequestMapping(value = "/:slug", method = RequestMethod.GET)
 	public Class getBySlug(@PathVariable("slug") String slug) {
 		return (Class)dao.getBySlug(slug);

@@ -27,6 +27,10 @@ public class UserController implements Controller<User> {
 	private GenDao dao;
 	private GenDao eventDao;
 
+	/**
+	 * Constructor for the UserController, it creates two GenDao's one for
+	 * User and one for Event.
+	 */
 	public UserController() {
 		dao = new GenDao(User.class);
 		eventDao = new GenDao(Event.class);
@@ -69,6 +73,11 @@ public class UserController implements Controller<User> {
 		dao.delete(entity);
 	}
 
+	/**
+	 * This function gets a user by their slug
+	 * @param slug the slug of the user
+	 * @return the user entity
+	 */
 	@RequestMapping(value = "/{slug}", method = RequestMethod.GET)
 	public User getBySlug(@PathVariable("slug") String slug) {
 		return (User)dao.getBySlug(slug);
