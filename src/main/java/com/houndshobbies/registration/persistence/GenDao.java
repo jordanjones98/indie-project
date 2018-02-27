@@ -86,6 +86,24 @@ public class GenDao<T> {
     }
 
 	/**
+	 * This function gets the entity by the slug.
+	 * @param slug the slug of the entity
+	 * @param return the entity
+	 */
+	public T getBySlug(String slug) {
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        Expression<String> propertyPath = root.get("slug");
+        query.where(builder.like(propertyPath, slug));
+        List<T> list = session.createQuery(query).getResultList();
+        session.close();
+
+        return list.get(0);
+	}
+
+	/**
 	 * This function inserts an entity into the database
 	 * @param entity the entity to insert
 	 * @return int id the id of the inserted entity
