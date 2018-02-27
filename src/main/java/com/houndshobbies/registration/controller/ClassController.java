@@ -6,15 +6,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.apache.log4j.Logger;
 import org.apache.log4j.LogManager;
 import com.houndshobbies.registration.persistence.GenDao;
 import java.util.List;
 import com.houndshobbies.registration.entity.Class;
-
+import com.houndshobbies.registration.interfaces.Controller;
 
 @RestController
-public class ClassController {
+public class ClassController implements Controller {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
 	private GenDao dao;
@@ -28,9 +29,14 @@ public class ClassController {
 	 * @return classes
 	 */
 	@RequestMapping("/classes")
-	public List<Class> classes() {
+	public List<Class> getAll() {
 		List<Class> classes = dao.getAll();
 		return classes;
+	}
+
+	@RequestMapping(value = "/classes/:slug", method = RequestMethod.GET)
+	public Class getBySlug(@PathVariable("slug") String slug) {
+		return (Class)dao.getBySlug(slug);
 	}
 
 	/**
