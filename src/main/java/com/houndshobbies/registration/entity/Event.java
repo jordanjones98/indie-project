@@ -22,6 +22,9 @@ public class Event {
 	@Column(name = "date")
 	private String date;
 
+	@Column(name = "slug")
+	private String slug;
+
 	@ManyToMany(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
 	@JoinTable(
 		name="event_class",
@@ -112,6 +115,22 @@ public class Event {
 	 */
 	public String getDate() {
 		return date;
+	}
+
+	/**
+	 * This function sets the slug for the event
+	 * @param slug
+	 */
+	public void setSlug(String slug) {
+		this.slug = slug;
+	}
+
+	/**
+	 * This function returns the slug of the event
+	 * @return slug
+	 */
+	public String getSlug() {
+		return slug;
 	}
 
 	/**
