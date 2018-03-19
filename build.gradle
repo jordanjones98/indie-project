@@ -5,11 +5,14 @@ buildscript {
 
 	repositories {
 		mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-snapshot'
+        }
 	}
 
 	dependencies{
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.0-RC3'
+		classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
 	}
 }
 
@@ -28,8 +31,16 @@ repositories {
 }
 
 jar {
-	baseName = 'gs-rest-service'
+	baseName = 'houndshobbies-rest-service'
 	version = '0.1.0'
+}
+
+junitPlatform {
+    reportsDir file('build/test-results/junit-platform') // this is the default
+    // enableStandardTestTask true
+    // selectors (optional)
+    // filters (optional)
+    // logManager (optional)
 }
 
 jacoco {
@@ -56,6 +67,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('mysql:mysql-connector-java')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+    compile 'org.springframework.security.oauth:spring-security-oauth2:2.3.0.RELEASE'
 	testCompile('org.springframework.security:spring-security-test')
 	compile group:'org.apache.logging.log4j', name: 'log4j-api', version: '2.10.0'
 	compile group:'org.apache.logging.log4j', name: 'log4j-core', version: '2.10.0'

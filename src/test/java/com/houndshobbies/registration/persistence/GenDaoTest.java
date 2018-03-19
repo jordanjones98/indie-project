@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
 import java.util.List;
 import com.houndshobbies.registration.util.Database;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
 public class GenDaoTest {
 

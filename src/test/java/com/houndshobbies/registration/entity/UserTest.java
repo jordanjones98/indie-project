@@ -10,8 +10,8 @@ import com.houndshobbies.registration.entity.User;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.runner.RunWith;
 import java.util.List;
+import com.houndshobbies.registration.persistence.GenDao;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest
 public class UserTest {
 
