@@ -88,10 +88,10 @@ public class UserController implements Controller<User> {
 	 * @param userId the userId sent in the URL
 	 * @param eventId the eventId of the event to attach to the user
 	 */
-	@RequestMapping(value = "/{userId}/add-event/{event}", method = RequestMethod.GET)
-	public User addEvent(@PathVariable("userId") int userId, @PathVariable("event") int eventId) {
-		User user = (User)dao.getById(userId);
-		Event event = (Event)eventDao.getById(eventId);
+	@RequestMapping(value = "/{userSlug}/add-event/{eventSlug}", method = RequestMethod.GET)
+	public User addEvent(@PathVariable("userSlug") String userSlug, @PathVariable("eventSlug") String eventSlug) {
+		User user = (User)dao.getBySlug(userSlug);
+		Event event = (Event)eventDao.getBySlug(eventSlug);
 		user.addEvent(event);
 		dao.saveOrUpdate(user);
 		return user;
