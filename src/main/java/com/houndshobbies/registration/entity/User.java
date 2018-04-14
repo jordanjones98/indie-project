@@ -23,10 +23,13 @@ public class User {
 	private String email;
 
 	@Column(name = "phone_number")
-	private int phoneNumber;
+	private long phoneNumber;
 
 	@Column(name = "password")
 	private String password;
+
+    @Column(name = "slug")
+    private String slug;
 
 	@ManyToMany(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
 	@JoinTable(
@@ -47,12 +50,13 @@ public class User {
 	 * @param phoneNumber the phone number of the user
 	 * @param password the password of the user
 	 */
-	public User(String firstName, String lastName, String email, int phoneNumber, String password) {;
+	public User(String firstName, String lastName, String email, long phoneNumber, String password, String slug) {;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.password = password;
+		this.slug = slug;
 	}
 
 	public int getId() {
@@ -99,7 +103,7 @@ public class User {
 	 * This function returns the phoneNumber of the user.
 	 * @return phoneNumber
 	 */
-	public int getPhoneNumber() {
+	public long getPhoneNumber() {
 		return phoneNumber;
 	}
 
@@ -110,6 +114,14 @@ public class User {
 	public String getPassword() {
 		return password;
 	}
+
+    /**
+     * This function returns the slug of the user.
+     * @return slug
+     */
+    public String getSlug() {
+        return slug;
+    }
 
 	/**
 	 * This functon returns the events that the user is in.
