@@ -16,6 +16,9 @@ public class Class {
 	@Column(name = "class_name")
 	private String className;
 
+	@Column(name = "slug")
+    private String slug;
+
 	@ManyToMany(mappedBy = "classes")
 	private Set<Event> events = new HashSet<>();
 

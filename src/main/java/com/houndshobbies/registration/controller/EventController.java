@@ -41,7 +41,6 @@ public class EventController implements Controller<Event> {
 	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Event> getAll() {
-		logger.info("Test!");
 		List<Event> events = dao.getAll();
 		return events;
 	}
@@ -89,13 +88,13 @@ public class EventController implements Controller<Event> {
 	 * @param classId the id of the class to attach to the event
 	 */
 	@RequestMapping(value = "/{event}/add-class/{class}", method = RequestMethod.GET)
-	public Event addEventClass(@PathVariable("event") int eventId,
-			@PathVariable("class") int classId) {
-		Event event = (Event)dao.getById(eventId);
-		Class eventClass = (Class)classDao.getById(classId);
+	public Event addEventClass(@PathVariable("event") String eventSlug,
+			@PathVariable("class") String classSlug) {
+		Event event = (Event)dao.getBySlug(eventSlug);
+		Class eventClass = (Class)classDao.getBySlug(classSlug);
 		event.addClass(eventClass);
 		dao.saveOrUpdate(event);
-		Event newEvent = (Event)dao.getById(eventId);
+		Event newEvent = (Event)dao.getBySlug(eventSlug);
 		return newEvent;
 	}
 
