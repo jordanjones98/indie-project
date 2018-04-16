@@ -26,9 +26,10 @@ public class Class {
 
 	}
 
-	public Class(int id, String className) {
+	public Class(int id, String className, String slug) {
 		this.id = id;
 		this.className = className;
+        this.slug = slug;
 	}
 
 	/**
@@ -62,4 +63,20 @@ public class Class {
 	public String getClassName() {
 		return className;
 	}
+
+    /**
+     * This function sets the slug for the class
+     * @param slug the slug of the class
+     */
+    public void setSlug(String slug) {
+        this.slug = slug;
+    }
+
+    /**
+     * This function returns the slug of the class
+     * @return slug
+     */
+    public String getSlug() {
+        return slug;
+    }
 }
