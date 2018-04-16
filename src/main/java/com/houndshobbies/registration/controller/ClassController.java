@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.apache.log4j.Logger;
 import org.apache.log4j.LogManager;
@@ -15,6 +16,7 @@ import com.houndshobbies.registration.entity.Class;
 import com.houndshobbies.registration.interfaces.Controller;
 
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/classes")
 public class ClassController implements Controller<Class> {
 	private final Logger logger = LogManager.getLogger(this.getClass());
