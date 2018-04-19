@@ -74,6 +74,12 @@ public class UserController implements Controller<User> {
 		dao.delete(entity);
 	}
 
+    /**
+     * This class accepts a SearchUser object, and searches for a user
+     * if that user is not found then it creates a new user, and returns that user.
+     * @param entity the SearchUser entity
+     * @return User the searched, or created user
+     */
     @RequestMapping(value = "/create-or-return", method = RequestMethod.POST)
     public User createOrUpdate(@RequestBody SearchUser entity) {
         List<User> user = (List<User>)dao.getByColumn("email", entity.getEmail());
