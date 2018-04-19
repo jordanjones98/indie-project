@@ -14,6 +14,7 @@ import com.houndshobbies.registration.persistence.GenDao;
 import java.util.List;
 import com.houndshobbies.registration.entity.User;
 import com.houndshobbies.registration.entity.Event;
+import com.houndshobbies.registration.entity.SearchUser;
 import java.util.Set;
 import com.houndshobbies.registration.interfaces.Controller;
 
@@ -72,6 +73,21 @@ public class UserController implements Controller<User> {
 	public void delete(@RequestBody User entity) {
 		dao.delete(entity);
 	}
+
+    @RequestMapping(value = "/create-or-return", method = RequestMethod.POST)
+    public User createOrUpdate(@RequestBody SearchUser entity) {
+        List<User> user = (List<User>)dao.getByColumn("email", entity.getEmail());
+        try {
+            return user.get(0);
+        } catch (IndexOutOfBoundsException e) {
+            User newUser = new User(entity.getFirstName(), entity.getLastName(),
+                    entity.getEmail(), 1, "a", "a");
+
+            dao.insert(newUser);
+
+            return newUser;
+        }
+    }
 
 	/**
 	 * This function gets a user by their slug
