@@ -87,7 +87,7 @@ public class UserController implements Controller<User> {
             return user.get(0);
         } catch (IndexOutOfBoundsException e) {
             User newUser = new User(entity.getFirstName(), entity.getLastName(),
-                    entity.getEmail(), 1, "a", "a");
+                    entity.getEmail(), 1, "a", "a", false);
 
             dao.insert(newUser);
 

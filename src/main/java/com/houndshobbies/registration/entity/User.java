@@ -31,6 +31,9 @@ public class User {
     @Column(name = "slug")
     private String slug;
 
+    @Column(name = "admin")
+    private boolean admin;
+
 	@ManyToMany(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
 	@JoinTable(
 		name="user_event",
@@ -50,13 +53,14 @@ public class User {
 	 * @param phoneNumber the phone number of the user
 	 * @param password the password of the user
 	 */
-	public User(String firstName, String lastName, String email, long phoneNumber, String password, String slug) {;
+	public User(String firstName, String lastName, String email, long phoneNumber, String password, String slug, boolean admin) {;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.password = password;
 		this.slug = slug;
+        this.admin = admin;
 	}
 
 	public int getId() {
@@ -121,6 +125,14 @@ public class User {
      */
     public String getSlug() {
         return slug;
+    }
+
+    /**
+     * This function returns the admin boolean for the user.
+     * @return admin
+     */
+    public boolean getAdmin() {
+        return admin;
     }
 
 	/**
