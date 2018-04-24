@@ -63,11 +63,18 @@ public class User {
         this.admin = admin;
 	}
 
+    /**
+     * This function returns the Id of the user.
+     * @return id the unique id of the user
+     */
 	public int getId() {
 		return id;
 	}
 
-	public void setId() {
+    /**
+     * This function sets the Id of the user.
+     */
+	public void setId(int id) {
 		this.id = id;
 	}
 

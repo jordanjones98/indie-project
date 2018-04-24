@@ -46,7 +46,7 @@ public class EventController implements Controller<Event> {
 	}
 
 	/**
-	 * This method gets an event by slug.
+	 * This function gets an event by slug.
 	 * @return event
 	 */
 	@RequestMapping(value = "/{slug}", method = RequestMethod.GET)

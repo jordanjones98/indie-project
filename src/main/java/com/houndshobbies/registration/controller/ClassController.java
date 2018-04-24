@@ -45,7 +45,7 @@ public class ClassController implements Controller<Class> {
 	 * @param slug the slug of the class
 	 * @return the class entity
 	 */
-	@RequestMapping(value = "/:slug", method = RequestMethod.GET)
+	@RequestMapping(value = "/{slug}", method = RequestMethod.GET)
 	public Class getBySlug(@PathVariable("slug") String slug) {
 		return (Class)dao.getBySlug(slug);
 	}
@@ -60,7 +60,7 @@ public class ClassController implements Controller<Class> {
 	}
 
 	/**
-	 * This function updates an class.
+	 * This function updates a class.
 	 * @param eventClass the class sent by the client to update
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -69,7 +69,7 @@ public class ClassController implements Controller<Class> {
 	}
 
 	/**
-	 * This function deletes an event from the table.
+	 * This function deletes an event from the database.
 	 * @param eventClass the Class object sent in by the client
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)

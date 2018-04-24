@@ -26,6 +26,12 @@ public class Class {
 
 	}
 
+    /**
+     * This is a constructor that creates a new class
+     * @param id the id of the class
+     * @param className the name of the class
+     * @param slug the slug of the class
+     */
 	public Class(int id, String className, String slug) {
 		this.id = id;
 		this.className = className;
