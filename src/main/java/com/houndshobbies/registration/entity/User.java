@@ -31,7 +31,6 @@ public class User {
     @Column(name = "admin")
     private boolean admin;
 
-    // Join table may be messing this up
 	@ManyToMany(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
 	@JoinTable(
 		name="user_event",
