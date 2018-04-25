@@ -112,10 +112,6 @@ public class UserController implements Controller<User> {
 	 */
 	@RequestMapping(value = "/{userSlug}/add-event", method = RequestMethod.POST)
 	public User addEvent(@RequestBody User entity) {
-		//User user = (User)dao.getBySlug(userSlug);
-		//Event event = (Event)eventDao.getBySlug(eventSlug);
-		//user.addEvent(event);
-        System.out.println(entity.getId());
 		dao.saveOrUpdate(entity);
         User user = (User)dao.getBySlug(entity.getSlug());
 		return user;
