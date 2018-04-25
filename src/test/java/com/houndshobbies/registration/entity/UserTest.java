@@ -19,7 +19,7 @@ public class UserTest {
 
 	@BeforeEach
 	void setUp() {
-		dao = new GenDao(Event.class);
+		dao = new GenDao(User.class);
 	}
 
 	@Test
