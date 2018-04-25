@@ -34,6 +34,7 @@ public class User {
     @Column(name = "admin")
     private boolean admin;
 
+    // Join table may be messing this up
 	@ManyToMany(cascade = { CascadeType.PERSIST }, fetch = FetchType.EAGER)
 	@JoinTable(
 		name="user_event",
@@ -52,6 +53,8 @@ public class User {
 	 * @param email the email of the user
 	 * @param phoneNumber the phone number of the user
 	 * @param password the password of the user
+     * @param slug the slug of the user
+     * @param admin boolean if user is admin
 	 */
 	public User(String firstName, String lastName, String email, long phoneNumber, String password, String slug, boolean admin) {;
 		this.firstName = firstName;
