@@ -25,9 +25,6 @@ public class User {
 	@Column(name = "phone_number")
 	private long phoneNumber;
 
-	@Column(name = "password")
-	private String password;
-
     @Column(name = "slug")
     private String slug;
 
@@ -52,16 +49,14 @@ public class User {
 	 * @param lastName the last name of the user
 	 * @param email the email of the user
 	 * @param phoneNumber the phone number of the user
-	 * @param password the password of the user
      * @param slug the slug of the user
      * @param admin boolean if user is admin
 	 */
-	public User(String firstName, String lastName, String email, long phoneNumber, String password, String slug, boolean admin) {;
+	public User(String firstName, String lastName, String email, long phoneNumber, String slug, boolean admin) {;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
-		this.password = password;
 		this.slug = slug;
         this.admin = admin;
 	}
@@ -121,20 +116,20 @@ public class User {
 		return phoneNumber;
 	}
 
-	/**
-	 * This function returns the password of the user.
-	 * @return password
-	 */
-	public String getPassword() {
-		return password;
-	}
-
     /**
      * This function returns the slug of the user.
      * @return slug
      */
     public String getSlug() {
         return slug;
+    }
+
+    /**
+     * This function sets the slug for the user.
+     * @param slug the user's slug
+     */
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     /**
@@ -152,6 +147,10 @@ public class User {
 	public Set<Event> getEvents() {
 		return events;
 	}
+
+    public void setEvents(Set<Event> events) {
+        this.events = events;
+    }
 
 	/**
 	 * This class adds an event to the current User.

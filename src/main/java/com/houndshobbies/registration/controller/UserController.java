@@ -87,7 +87,7 @@ public class UserController implements Controller<User> {
             return user.get(0);
         } catch (IndexOutOfBoundsException e) {
             User newUser = new User(entity.getFirstName(), entity.getLastName(),
-                    entity.getEmail(), 1, "a", "a", false);
+                    entity.getEmail(), 1, "a", false);
 
             dao.insert(newUser);
 
@@ -110,12 +110,14 @@ public class UserController implements Controller<User> {
 	 * @param userId the userId sent in the URL
 	 * @param eventId the eventId of the event to attach to the user
 	 */
-	@RequestMapping(value = "/{userSlug}/add-event/{eventSlug}", method = RequestMethod.GET)
-	public User addEvent(@PathVariable("userSlug") String userSlug, @PathVariable("eventSlug") String eventSlug) {
-		User user = (User)dao.getBySlug(userSlug);
-		Event event = (Event)eventDao.getBySlug(eventSlug);
-		user.addEvent(event);
-		dao.saveOrUpdate(user);
+	@RequestMapping(value = "/{userSlug}/add-event", method = RequestMethod.POST)
+	public User addEvent(@RequestBody User entity) {
+		//User user = (User)dao.getBySlug(userSlug);
+		//Event event = (Event)eventDao.getBySlug(eventSlug);
+		//user.addEvent(event);
+        System.out.println(entity.getId());
+		dao.saveOrUpdate(entity);
+        User user = (User)dao.getBySlug(entity.getSlug());
 		return user;
 	}
 
