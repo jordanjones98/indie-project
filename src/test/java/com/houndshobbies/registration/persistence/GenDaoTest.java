@@ -40,7 +40,7 @@ public class GenDaoTest {
 	void getByIdSuccess() {
 		User user = (User)dao.getById(1);
 		assertNotNull(user);
-		assertEquals("Jordan", user.getFirstName());
+		assertEquals("Mikayla", user.getFirstName());
 	}
 
 	/**
@@ -58,12 +58,12 @@ public class GenDaoTest {
 	 */
 	@Test
 	void insertSuccess() {
-		User newUser = new User("Jeff", "Johnson", "jjohnson@gmail.com", 1111111111, "a");
+		User newUser = new User("Alex", "Ovechkin", "ovechkin@gmail.com", 1111111111, "a", "alex-ovechkin", false);
 		int id = dao.insert(newUser);
 		assertNotNull(id);
 		assertNotEquals(0, id);
 		User user = (User)dao.getById(id);
-		assertEquals("Jeff", user.getFirstName());
+		assertEquals("Alex", user.getFirstName());
 	}
 
 	/**

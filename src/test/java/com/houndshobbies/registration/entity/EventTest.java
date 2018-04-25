@@ -30,7 +30,7 @@ public class EventTest {
 		Class eventClass = (Class)classDao.getById(1);
 		event.addClass(eventClass);
 		dao.saveOrUpdate(event);
-		Event newEvent = (Event)dao.getById(2);
+		Event newEvent = (Event)dao.getById(3);
 		assertEquals(1, newEvent.getClasses().size());
 	}
 }
