@@ -58,7 +58,7 @@ public class GenDaoTest {
 	 */
 	@Test
 	void insertSuccess() {
-		User newUser = new User("Alex", "Ovechkin", "ovechkin@gmail.com", 1111111111, "a", "alex-ovechkin", false);
+		User newUser = new User("Alex", "Ovechkin", "ovechkin@gmail.com", 1111111111, "alex-ovechkin", false);
 		int id = dao.insert(newUser);
 		assertNotNull(id);
 		assertNotEquals(0, id);
