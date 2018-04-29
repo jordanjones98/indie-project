@@ -139,6 +139,14 @@ public class User {
         return admin;
     }
 
+    /**
+     * This function sets the admin boolean for the user.
+     * @param admin
+     */
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
 	/**
 	 * This functon returns the events that the user is in.
 	 * @return events

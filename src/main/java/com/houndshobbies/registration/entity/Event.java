@@ -36,6 +36,9 @@ public class Event {
 	@ManyToMany(mappedBy = "events")
 	private Set<User> users = new HashSet<>();
 
+    @Transient
+    private String truncateAbout;
+
 	public Event() {
 
 	}
@@ -68,6 +71,20 @@ public class Event {
 	public int getId() {
 		return id;
 	}
+
+    public String getTruncateAbout() {
+        int length;
+        StringBuffer sb = new StringBuffer(about);
+        if(about.length() > 200) {
+            length = 220;
+        } else {
+            truncateAbout = about;
+            return truncateAbout;
+        }
+        int endIndex = sb.indexOf(" ", length);
+        truncateAbout = sb.substring(0, endIndex);
+        return truncateAbout;
+    }
 
 	/**
 	 * This function sets the name of the event

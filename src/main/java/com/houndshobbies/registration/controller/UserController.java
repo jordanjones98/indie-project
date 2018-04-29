@@ -110,7 +110,7 @@ public class UserController implements Controller<User> {
 	 * @param userId the userId sent in the URL
 	 * @param eventId the eventId of the event to attach to the user
 	 */
-	@RequestMapping(value = "/{userSlug}/add-event", method = RequestMethod.POST)
+	@RequestMapping(value = "/{userSlug}/add-or-remove-event", method = RequestMethod.POST)
 	public User addEvent(@RequestBody User entity) {
 		dao.saveOrUpdate(entity);
         User user = (User)dao.getBySlug(entity.getSlug());
@@ -122,12 +122,22 @@ public class UserController implements Controller<User> {
 	 * @param userId the id of the user to remove the event from
 	 * @param eventId the id of the event to detach from the user
 	 */
-	@RequestMapping(value = "/{userId}/remove-event/{event}", method = RequestMethod.GET)
-	public User removeEvent(@PathVariable("userId") int userId, @PathVariable("event") int eventId) {
-		User user = (User)dao.getById(userId);
-		Event event = (Event)eventDao.getById(eventId);
-		user.removeEvent(event);
-		dao.saveOrUpdate(user);
+	@RequestMapping(value = "/{userSlug}/remove-event", method = RequestMethod.POST)
+	public User removeEvent(@RequestBody User entity) {
+		dao.saveOrUpdate(entity);
+        User user = (User)dao.getBySlug(entity.getSlug());
+		return user;
+	}
+
+	@RequestMapping(value = "/{userSlug}/admin", method = RequestMethod.POST)
+	public User changeAdmin(@RequestBody User entity) {
+        if(entity.getAdmin()) {
+            entity.setAdmin(false);
+        } else {
+            entity.setAdmin(true);
+        }
+		dao.saveOrUpdate(entity);
+        User user = (User)dao.getBySlug(entity.getSlug());
 		return user;
 	}
 }
