@@ -84,8 +84,8 @@ public class EventController implements Controller<Event> {
 
 	/**
 	 * This function attaches a class to an event.
-	 * @param eventId the id of the event
-	 * @param classId the id of the class to attach to the event
+	 * @param eventSlug the slug of the event
+	 * @param classSlug the slug of the class to attach to the event
 	 */
 	@RequestMapping(value = "/{event}/add-class/{class}", method = RequestMethod.GET)
 	public Event addEventClass(@PathVariable("event") String eventSlug,
@@ -110,8 +110,5 @@ public class EventController implements Controller<Event> {
 		Class eventClass = (Class)classDao.getById(classId);
 		event.removeClass(eventClass);
 		return event;
-		//dao.saveOrUpdate(event);
-		//Event newEvent = (Event)dao.getById(eventId);
-		//return newEvent;
 	}
 }

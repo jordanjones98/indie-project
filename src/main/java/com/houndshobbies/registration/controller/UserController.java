@@ -49,7 +49,7 @@ public class UserController implements Controller<User> {
 
 	/**
 	 * This function handles the insert of a user
-	 * @param user the User object that is sent in with the request body
+	 * @param entity the User object that is sent in with the request body
 	 */
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public int insert(@RequestBody User entity) {
@@ -58,7 +58,7 @@ public class UserController implements Controller<User> {
 
 	/**
 	 * This function handles the update of a user
-	 * @param user the User object that is sent in with the request body
+	 * @param entity the User object that is sent in with the request body
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public void update(@RequestBody User entity) {
@@ -67,7 +67,7 @@ public class UserController implements Controller<User> {
 
 	/**
 	 * This function handles a delete of the user
-	 * @param user the User object that is sent in with the request body
+	 * @param entity the User object that is sent in with the request body
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public void delete(@RequestBody User entity) {
@@ -107,8 +107,7 @@ public class UserController implements Controller<User> {
 
 	/**
 	 * This function adds an event to a user.
-	 * @param userId the userId sent in the URL
-	 * @param eventId the eventId of the event to attach to the user
+	 * @param entity the event to attach to the user
 	 */
 	@RequestMapping(value = "/{userSlug}/add-or-remove-event", method = RequestMethod.POST)
 	public User addEvent(@RequestBody User entity) {
@@ -119,8 +118,7 @@ public class UserController implements Controller<User> {
 
 	/**
 	 * This funciton removes an event from a user.
-	 * @param userId the id of the user to remove the event from
-	 * @param eventId the id of the event to detach from the user
+	 * @param entity the event to detach from the user
 	 */
 	@RequestMapping(value = "/{userSlug}/remove-event", method = RequestMethod.POST)
 	public User removeEvent(@RequestBody User entity) {
@@ -129,6 +127,11 @@ public class UserController implements Controller<User> {
 		return user;
 	}
 
+    /**
+     * This function makes a user an admin
+     * @param entity the user entity to make an admin
+     * @return admin
+     */
 	@RequestMapping(value = "/{userSlug}/admin", method = RequestMethod.POST)
 	public User changeAdmin(@RequestBody User entity) {
         if(entity.getAdmin()) {

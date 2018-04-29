@@ -45,15 +45,16 @@ public class Event {
 
 	/**
 	 * This constructor creates a new Event
-	 * @param id
 	 * @param name
 	 * @param about
 	 * @param date
+	 * @param slug
 	 */
-	public Event(String name, String about, String date) {
+	public Event(String name, String about, String date, String slug) {
 		this.name = name;
 		this.about = about;
 		this.date = date;
+		this.slug = slug;
 	}
 
 	/**

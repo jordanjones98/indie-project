@@ -52,7 +52,7 @@ public class ClassController implements Controller<Class> {
 
 	/**
 	 * This funciton inserts a new class into the database.
-	 * @param eventClass the class sent by the client to insert
+	 * @param entity the class sent by the client to insert
 	 */
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public int insert(@RequestBody Class entity) {
@@ -61,7 +61,7 @@ public class ClassController implements Controller<Class> {
 
 	/**
 	 * This function updates a class.
-	 * @param eventClass the class sent by the client to update
+	 * @param entity the class sent by the client to update
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public void update(@RequestBody Class entity) {
@@ -70,7 +70,7 @@ public class ClassController implements Controller<Class> {
 
 	/**
 	 * This function deletes an event from the database.
-	 * @param eventClass the Class object sent in by the client
+	 * @param entity the Class object sent in by the client
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public void delete(@RequestBody Class entity) {

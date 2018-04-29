@@ -88,7 +88,7 @@ public class GenDao<T> {
 	/**
 	 * This function gets the entity by the slug.
 	 * @param slug the slug of the entity
-	 * @param return the entity
+	 * @return the entity
 	 */
 	public T getBySlug(String slug) {
         Session session = sessionFactory.openSession();

@@ -8,6 +8,7 @@ public class RegistrationApplication {
 
     /**
      * Run the spring application
+     * @param args the arguments
      */
 	public static void main(String[] args) {
 		SpringApplication.run(RegistrationApplication.class, args);
