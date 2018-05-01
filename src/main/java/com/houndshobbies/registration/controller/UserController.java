@@ -17,16 +17,18 @@ import com.houndshobbies.registration.entity.Event;
 import com.houndshobbies.registration.entity.SearchUser;
 import java.util.Set;
 import com.houndshobbies.registration.interfaces.Controller;
+import com.houndshobbies.registration.services.Slug;
 
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/users")
+@RequestMapping("/api/users")
 public class UserController implements Controller<User> {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
 	private GenDao dao;
 	private GenDao eventDao;
+    private Slug slug;
 
 	/**
 	 * Constructor for the UserController, it creates two GenDao's one for
@@ -35,6 +37,7 @@ public class UserController implements Controller<User> {
 	public UserController() {
 		dao = new GenDao(User.class);
 		eventDao = new GenDao(Event.class);
+        slug = new Slug();
 	}
 
 	/**
@@ -53,6 +56,7 @@ public class UserController implements Controller<User> {
 	 */
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public int insert(@RequestBody User entity) {
+        entity.setSlug(slug.slugify(entity.getFirstName() + " " + entity.getLastName()));
 		return dao.insert(entity);
 	}
 
@@ -62,6 +66,7 @@ public class UserController implements Controller<User> {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public void update(@RequestBody User entity) {
+        entity.setSlug(slug.slugify(entity.getFirstName() + " " + entity.getLastName()));
 		dao.saveOrUpdate(entity);
 	}
 
@@ -86,8 +91,10 @@ public class UserController implements Controller<User> {
         try {
             return user.get(0);
         } catch (IndexOutOfBoundsException e) {
+            String slugString = slug.slugify(entity.getFirstName() + " "
+                    + entity.getLastName());
             User newUser = new User(entity.getFirstName(), entity.getLastName(),
-                    entity.getEmail(), 1, "a", false);
+                    entity.getEmail(), 1, slugString, false);
 
             dao.insert(newUser);
 

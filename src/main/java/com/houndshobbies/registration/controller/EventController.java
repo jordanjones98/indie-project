@@ -15,16 +15,18 @@ import java.util.List;
 import com.houndshobbies.registration.entity.Event;
 import com.houndshobbies.registration.entity.Class;
 import com.houndshobbies.registration.interfaces.Controller;
+import com.houndshobbies.registration.services.Slug;
 
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/events")
+@RequestMapping("/api/events")
 public class EventController implements Controller<Event> {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
 	private GenDao dao;
 	private GenDao classDao;
+    private Slug slug;
 
 	/**
 	 * Constructor for EventController creates two GenDao's one for Event
@@ -33,6 +35,7 @@ public class EventController implements Controller<Event> {
 	public EventController() {
 		dao = new GenDao(Event.class);
 		classDao = new GenDao(Class.class);
+        slug = new Slug();
 	}
 
 	/**
@@ -61,6 +64,7 @@ public class EventController implements Controller<Event> {
 	 */
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public int insert(@RequestBody Event entity) {
+        entity.setSlug(slug.slugify(entity.getName()));
 		return dao.insert(entity);
 	}
 
@@ -70,6 +74,7 @@ public class EventController implements Controller<Event> {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public void update(@RequestBody Event entity) {
+        entity.setSlug(slug.slugify(entity.getName()));
 		dao.saveOrUpdate(entity);
 	}
 

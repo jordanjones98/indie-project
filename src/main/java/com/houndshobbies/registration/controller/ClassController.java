@@ -14,20 +14,23 @@ import com.houndshobbies.registration.persistence.GenDao;
 import java.util.List;
 import com.houndshobbies.registration.entity.Class;
 import com.houndshobbies.registration.interfaces.Controller;
+import com.houndshobbies.registration.services.Slug;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/classes")
+@RequestMapping("/api/classes")
 public class ClassController implements Controller<Class> {
 	private final Logger logger = LogManager.getLogger(this.getClass());
 
 	private GenDao dao;
+    private Slug slug;
 
 	/**
 	 * Constructor for ClassController, creates one GenDao for Class.
 	 */
 	public ClassController() {
 		dao = new GenDao(Class.class);
+        slug = new Slug();
 	}
 
 	/**
@@ -56,6 +59,7 @@ public class ClassController implements Controller<Class> {
 	 */
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	public int insert(@RequestBody Class entity) {
+        entity.setSlug(slug.slugify(entity.getClassName()));
 		return dao.insert(entity);
 	}
 
@@ -65,6 +69,7 @@ public class ClassController implements Controller<Class> {
 	 */
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public void update(@RequestBody Class entity) {
+        entity.setSlug(slug.slugify(entity.getClassName()));
 		dao.saveOrUpdate(entity);
 	}
 
