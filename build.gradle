@@ -36,6 +36,12 @@ jar {
 	version = '0.1.0'
 }
 
+
+war {
+	baseName = 'houndshobbies'
+	version = '0.1.0'
+}
+
 junitPlatform {
     reportsDir file('build/test-results/junit-platform') // this is the default
     // enableStandardTestTask true

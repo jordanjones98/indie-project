@@ -77,7 +77,7 @@ public class ClassController implements Controller<Class> {
 	 * This function deletes an event from the database.
 	 * @param entity the Class object sent in by the client
 	 */
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	public void delete(@RequestBody Class entity) {
 		dao.delete(entity);
 	}

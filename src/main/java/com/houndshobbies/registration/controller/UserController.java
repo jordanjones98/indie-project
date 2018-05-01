@@ -74,7 +74,7 @@ public class UserController implements Controller<User> {
 	 * This function handles a delete of the user
 	 * @param entity the User object that is sent in with the request body
 	 */
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	public void delete(@RequestBody User entity) {
 		dao.delete(entity);
 	}
