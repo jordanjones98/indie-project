@@ -11,6 +11,7 @@ import com.houndshobbies.registration.entity.Class;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.junit.runner.RunWith;
 import java.util.List;
+import com.houndshobbies.registration.util.Database;
 
 @SpringBootTest
 public class EventTest {
@@ -22,12 +23,14 @@ public class EventTest {
 	void setUp() {
 		dao = new GenDao(Event.class);
 		classDao = new GenDao(Class.class);
+		Database database = Database.getInstance();
+		database.runSQL("cleandb.sql");
 	}
 
 	@Test
 	void addClassToEventSuccess() {
 		Event event = (Event)dao.getById(3);
-		Class eventClass = (Class)classDao.getById(1);
+		Class eventClass = (Class)classDao.getById(2);
 		event.addClass(eventClass);
 		dao.saveOrUpdate(event);
 		Event newEvent = (Event)dao.getById(3);
