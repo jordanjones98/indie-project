@@ -86,4 +86,10 @@ public class GenDaoTest {
 		User updatedUser = (User)dao.getById(2);
 		assertEquals("Jill", updatedUser.getFirstName());
 	}
+
+    @Test
+    void getBySlugSuccess() {
+        User user = (User)dao.getBySlug("jordan-jones");
+        assertEquals("Jordan", user.getFirstName());
+    }
 }

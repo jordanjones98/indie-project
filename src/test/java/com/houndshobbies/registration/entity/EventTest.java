@@ -19,6 +19,10 @@ public class EventTest {
 	GenDao dao;
 	GenDao classDao;
 
+    /**
+     * This function runs before each test, and creates daos, and sets the
+     * database to a known state.
+     */
 	@BeforeEach
 	void setUp() {
 		dao = new GenDao(Event.class);
@@ -27,6 +31,9 @@ public class EventTest {
 		database.runSQL("cleandb.sql");
 	}
 
+    /**
+     * This class tests that you can add a class to an event.
+     */
 	@Test
 	void addClassToEventSuccess() {
 		Event event = (Event)dao.getById(3);
@@ -36,4 +43,24 @@ public class EventTest {
 		Event newEvent = (Event)dao.getById(3);
 		assertEquals(1, newEvent.getClasses().size());
 	}
+
+    @Test
+    void getTruncateAboutLargeAbout() {
+        Event event = (Event)dao.getById(4);
+        String truncateAbout = event.getTruncateAbout();
+        assertEquals(224, truncateAbout.length());
+    }
+
+    @Test
+    void getTruncateAboutSmallAbout() {
+        Event event = (Event)dao.getById(3);
+        String truncateAbout = event.getTruncateAbout();
+        assertEquals(89, truncateAbout.length());
+    }
+
+    @Test
+    void manyToManyWithClassesTest() {
+        Event event = (Event)dao.getById(1);
+        assertEquals(2, event.getClasses().size());
+    }
 }

@@ -73,10 +73,14 @@ public class Event {
 		return id;
 	}
 
+    /**
+     * This function makes a truncated about string.
+     *
+     */
     public String getTruncateAbout() {
         int length;
         StringBuffer sb = new StringBuffer(about);
-        if(about.length() > 200) {
+        if(about.length() > 220) {
             length = 220;
         } else {
             truncateAbout = about;

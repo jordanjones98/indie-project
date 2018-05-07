@@ -75,7 +75,7 @@ public class SearchUser {
      * This funcion parses the full name into first, and last names then it puts
      * each variable into it's respective variable.
      */
-    public void parseFirstLastName() {
+    private void parseFirstLastName() {
         String[] splitName = fullName.split("\\s+");
         firstName = splitName[0];
         lastName = splitName[1];
