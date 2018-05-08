@@ -1,5 +1,8 @@
 package com.houndshobbies.registration.entity;
 
+/**
+ * This class serves as an entity for when a user is seached via the API.
+ */
 public class SearchUser {
     private String email;
 

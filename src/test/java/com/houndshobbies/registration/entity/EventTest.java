@@ -13,6 +13,9 @@ import org.junit.runner.RunWith;
 import java.util.List;
 import com.houndshobbies.registration.util.Database;
 
+/**
+ * This function tests the Event entity
+ */
 @SpringBootTest
 public class EventTest {
 
@@ -32,7 +35,7 @@ public class EventTest {
 	}
 
     /**
-     * This class tests that you can add a class to an event.
+     * This function tests that you can add a class to an event.
      */
 	@Test
 	void addClassToEventSuccess() {
@@ -44,6 +47,9 @@ public class EventTest {
 		assertEquals(1, newEvent.getClasses().size());
 	}
 
+    /**
+     * This function tests that the truncate about function will truncate a large about.
+     */
     @Test
     void getTruncateAboutLargeAbout() {
         Event event = (Event)dao.getById(4);
@@ -51,6 +57,9 @@ public class EventTest {
         assertEquals(224, truncateAbout.length());
     }
 
+    /**
+     * This function asserts that when you have a small about text it will return only that.
+     */
     @Test
     void getTruncateAboutSmallAbout() {
         Event event = (Event)dao.getById(3);
@@ -58,6 +67,9 @@ public class EventTest {
         assertEquals(89, truncateAbout.length());
     }
 
+    /**
+     * This function tests the many to many with classes
+     */
     @Test
     void manyToManyWithClassesTest() {
         Event event = (Event)dao.getById(1);

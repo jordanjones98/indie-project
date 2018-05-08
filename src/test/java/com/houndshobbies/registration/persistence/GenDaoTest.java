@@ -12,11 +12,17 @@ import org.junit.runner.RunWith;
 import java.util.List;
 import com.houndshobbies.registration.util.Database;
 
+/**
+ * This class serves as a test for the General DAO
+ */
 @SpringBootTest
 public class GenDaoTest {
 
 	GenDao dao;
 
+    /**
+     * This function runs before every test and resets the database to a known state.
+     */
 	@BeforeEach
 	void setUp() {
 		dao = new GenDao(User.class);
@@ -87,6 +93,9 @@ public class GenDaoTest {
 		assertEquals("Jill", updatedUser.getFirstName());
 	}
 
+    /**
+     * This function tests that you can get a user by a slug.
+     */
     @Test
     void getBySlugSuccess() {
         User user = (User)dao.getBySlug("jordan-jones");

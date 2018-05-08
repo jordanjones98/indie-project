@@ -6,6 +6,9 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+/**
+ * This class is a session factory.
+ */
 public class SessionFactoryProvider {
 
 	private static SessionFactory sessionFactory;

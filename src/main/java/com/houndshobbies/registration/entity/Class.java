@@ -5,6 +5,9 @@ import org.hibernate.annotations.GenericGenerator;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * This class serves as a hibernate entity for a Class (database object)
+ */
 @Entity(name = "Class")
 @Table(name = "classes")
 public class Class {

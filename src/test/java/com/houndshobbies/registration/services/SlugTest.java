@@ -10,6 +10,9 @@ import org.junit.runner.RunWith;
 import java.util.List;
 import com.houndshobbies.registration.util.Database;
 
+/**
+ * This function tests the slug service.
+ */
 public class SlugTest {
     /**
      * This function asserts that the slugify function will take out spaces, and

@@ -13,24 +13,36 @@ import org.junit.runner.RunWith;
 import java.util.List;
 import com.houndshobbies.registration.persistence.GenDao;
 
+/**
+ * This function tests the User entity
+ */
 @SpringBootTest
 public class UserTest {
 
 	GenDao dao;
 	GenDao eventDao;
 
+    /**
+     * Before each class set up the DAO's
+     */
 	@BeforeEach
 	void setUp() {
 		dao = new GenDao(User.class);
 		eventDao = new GenDao(Event.class);
 	}
 
+    /**
+     * This function makes sure that the entity returns users.
+     */
 	@Test
 	void getUserTestSuccess() {
 		List<User> users = dao.getAll();
 		assertNotNull(users);
 	}
 
+    /**
+     * This function asserts that you can add an event to a user.
+     */
     @Test
     void addEventToUserSuccess() {
         User user = (User)dao.getBySlug("jordan-jones");
@@ -39,6 +51,9 @@ public class UserTest {
         assertEquals(2, user.getEvents().size());
     }
 
+    /**
+     * This function asserts that you can remove an event from a user.
+     */
     @Test
     void removeEventFromUserSuccess() {
         User user = (User)dao.getBySlug("jordan-jones");

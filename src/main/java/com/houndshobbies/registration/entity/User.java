@@ -5,6 +5,9 @@ import org.hibernate.annotations.GenericGenerator;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * This class serves as a hibernate entity for a User.
+ */
 @Entity(name = "User")
 @Table(name = "users")
 public class User {
@@ -155,6 +158,10 @@ public class User {
 		return events;
 	}
 
+    /**
+     * This function sets the events.
+     * @param events the events to set
+     */
     public void setEvents(Set<Event> events) {
         this.events = events;
     }

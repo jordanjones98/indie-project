@@ -13,6 +13,9 @@ import org.junit.runner.RunWith;
 import java.util.List;
 import com.houndshobbies.registration.util.Database;
 
+/**
+ * This function tests the Class entity.
+ */
 @SpringBootTest
 public class ClassTest {
 
@@ -37,14 +40,6 @@ public class ClassTest {
     void getClassById() {
         Class eventClass = (Class)dao.getById(1);
         assertNotNull(eventClass.getClassName());
-    }
-
-    /**
-     * This function tests that you can create a new Class by the constructor.
-     */
-    @Test
-    void createClassByConstructor() {
-
     }
 
 }

@@ -13,6 +13,9 @@ import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Expression;
 import org.hibernate.Transaction;
 
+/**
+ * This class is a dao that accepts a class, and can do hibernate actions on that class
+ */
 public class GenDao<T> {
 
 	private Class<T> type;

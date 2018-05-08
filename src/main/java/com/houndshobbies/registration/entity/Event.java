@@ -5,6 +5,9 @@ import org.hibernate.annotations.GenericGenerator;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * This class serves as a hibernate object for an Event.
+ */
 @Entity(name = "Event")
 @Table(name = "events")
 public class Event {
